@@ -1,9 +1,6 @@
 ﻿using Cinema2026.Repo.Data;
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cinema2026.Repo.Repositiories
 {

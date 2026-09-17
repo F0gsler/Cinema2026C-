@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema2026.Repo.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260916172957_test")]
-    partial class test
+    [Migration("20260917082915_as")]
+    partial class @as
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,6 +58,10 @@ namespace Cinema2026.Repo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

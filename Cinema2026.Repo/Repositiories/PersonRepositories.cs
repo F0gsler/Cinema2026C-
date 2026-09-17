@@ -1,9 +1,5 @@
 ﻿using Cinema2026.Repo.Models;
 using Cinema2026.Repo.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Cinema2026.Repo.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,9 +18,6 @@ namespace Cinema2026.Repo.Repositiories
         //get
         List<Person> persons = new List<Person>()
         {
-            new Person() { PersonId = 1, name = "Marius", age = 20},
-            new Person() { PersonId = 2, name = "Andreas", age = 19},
-            new Person() { PersonId = 3, name = "Daniel", age = 19}
         };
 
         public List<Person> GetPeople()

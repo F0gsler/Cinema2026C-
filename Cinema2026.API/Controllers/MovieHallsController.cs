@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Cinema2026.Repo.Data;
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Models;
 using Cinema2026.Repo.Repositiories;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Core.Types;
 
 
 [Route("api/[controller]")]
@@ -11,9 +12,11 @@ using Cinema2026.Repo.Repositiories;
 public class MovieHallsController : ControllerBase
 {
     private readonly DatabaseContext _context;
-    public MovieHallsController(DatabaseContext context)
+    private readonly IMovieHallRepositories _movieHallRepo;
+    public MovieHallsController(DatabaseContext context, IMovieHallRepositories movieHallRepo)
     {
         _context = context;
+        _movieHallRepo = movieHallRepo;
     }
 
     // GET: api/MovieHall
@@ -36,6 +39,13 @@ public class MovieHallsController : ControllerBase
 
         return moviehall;
     }
+    [HttpPost]
+    public async Task<MovieHall> CreateHall([FromBody] MovieHall movieHall)
+    {
+        return await _movieHallRepo.CreateMoviehall(movieHall);
+    }
+
+
 
     // PUT: api/MovieHall/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -66,15 +76,10 @@ public class MovieHallsController : ControllerBase
         }
 
         return NoContent();
-    }
 
-    // POST: api/MovieHall
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    [HttpPost]
-        public async Task<MovieHall> CreateMoviehall([FromBody]MovieHall movieHall)
-    {
-        var created = await _context.MovieHalls.
-        return created;
+        
+
+        
     }
 
     // DELETE: api/MovieHall/5
@@ -92,7 +97,6 @@ public class MovieHallsController : ControllerBase
 
         return NoContent();
     }
-
     private bool MovieHallExists(int? moviehallid)
     {
         return _context.MovieHalls.Any(e => e.MovieHallId == moviehallid);

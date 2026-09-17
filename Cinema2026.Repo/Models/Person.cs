@@ -6,7 +6,8 @@
     {
         public int PersonId { get; set; } // Variable / Property <---- Primary
         public required string name { get; set; }
-        public int age { get; set; }
+        public int age { get; set; } 
+        public required string role { get; set; }
     }
 
     public class MovieHall
@@ -23,6 +24,7 @@
         public int HallSeatsId { get; set; }
         public required List<Person> PersonId { get; set; }
         public required List<MovieHall> MovieHallId { get; set; }
+        public required int SeatAmount { get; set; }
         public required string SeatType { get; set; }
     }
     

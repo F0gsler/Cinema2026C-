@@ -58,6 +58,10 @@ namespace Cinema2026.Repo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PersonId");
 
                     b.HasIndex("MovieHallId");
