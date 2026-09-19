@@ -1,13 +1,17 @@
 using Cinema2026.Repo.Data;
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Repositiories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args); // Laver/Builder Web app
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
@@ -16,7 +20,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("defaultconnect")
 
 builder.Services.AddScoped<IPersonRepositories, PersonRepositories>();
 builder.Services.AddScoped<IMovieHallRepositories, MovieHallRepositories>();
-
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositiories<>));
+    
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

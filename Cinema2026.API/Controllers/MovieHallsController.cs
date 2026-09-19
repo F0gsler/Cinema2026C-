@@ -1,48 +1,44 @@
-using Cinema2026.Repo.Data;
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Models;
-using Cinema2026.Repo.Repositiories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Core.Types;
 
 
 [Route("api/[controller]")]
 [ApiController]
 public class MovieHallsController : ControllerBase
 {
-    private readonly DatabaseContext _context;
-    private readonly IMovieHallRepositories _movieHallRepo;
-    public MovieHallsController(DatabaseContext context, IMovieHallRepositories movieHallRepo)
+    private readonly IGenericRepository<MovieHall> _repo;
+    public MovieHallsController(IGenericRepository<MovieHall> repo)
     {
-        _context = context;
-        _movieHallRepo = movieHallRepo;
+        _repo = repo;
     }
 
     // GET: api/MovieHall
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MovieHall>>> GetMovieHall()
     {
-        return await _context.MovieHalls.ToListAsync();
+        var all = await _repo.GetAll();
+        return Ok(all);
     }
 
     // GET: api/MovieHall/5
     [HttpGet("{moviehallid}")]
     public async Task<ActionResult<MovieHall>> GetMovieHall(int moviehallid)
     {
-        var moviehall = await _context.MovieHalls.FindAsync(moviehallid);
+        var moviehall = await _repo.GetById(moviehallid);
 
         if (moviehall == null)
         {
             return NotFound();
         }
 
-        return moviehall;
+        return Ok(moviehall);
     }
     [HttpPost]
     public async Task<MovieHall> CreateHall([FromBody] MovieHall movieHall)
     {
-        return await _movieHallRepo.CreateMoviehall(movieHall);
+        var created = await _repo.Add(movieHall);
+        return created;
     }
 
 
@@ -57,23 +53,8 @@ public class MovieHallsController : ControllerBase
             return BadRequest();
         }
 
-        _context.Entry(moviehall).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!MovieHallExists(moviehallid))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
+        // Use generic repository to update
+        await _repo.Update(moviehall);
 
         return NoContent();
 
@@ -86,19 +67,11 @@ public class MovieHallsController : ControllerBase
     [HttpDelete("{moviehallid}")]
     public async Task<IActionResult> DeleteMovieHall(int? moviehallid)
     {
-        var moviehall = await _context.MovieHalls.FindAsync(moviehallid);
-        if (moviehall == null)
-        {
-            return NotFound();
-        }
-
-        _context.MovieHalls.Remove(moviehall);
-        await _context.SaveChangesAsync();
-
+        if (moviehallid == null) return BadRequest();
+        var moviehall = await _repo.GetById(moviehallid.Value);
+        if (moviehall == null) return NotFound();
+        await _repo.Delete(moviehallid.Value);
         return NoContent();
     }
-    private bool MovieHallExists(int? moviehallid)
-    {
-        return _context.MovieHalls.Any(e => e.MovieHallId == moviehallid);
-    }
+
 }

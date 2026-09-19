@@ -5,11 +5,26 @@
 namespace Cinema2026.Repo.Migrations
 {
     /// <inheritdoc />
-    public partial class @as : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Adminuser",
+                columns: table => new
+                {
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdminLevel = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adminuser", x => x.AdminId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "MovieHalls",
                 columns: table => new
@@ -22,6 +37,25 @@ namespace Cinema2026.Repo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MovieHalls", x => x.MovieHallId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Movies",
+                columns: table => new
+                {
+                    MovieId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieHallId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movies", x => x.MovieId);
+                    table.ForeignKey(
+                        name: "FK_Movies_MovieHalls_MovieHallId",
+                        column: x => x.MovieHallId,
+                        principalTable: "MovieHalls",
+                        principalColumn: "MovieHallId");
                 });
 
             migrationBuilder.CreateTable(
@@ -46,6 +80,11 @@ namespace Cinema2026.Repo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Movies_MovieHallId",
+                table: "Movies",
+                column: "MovieHallId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Persons_MovieHallId",
                 table: "Persons",
                 column: "MovieHallId");
@@ -54,6 +93,12 @@ namespace Cinema2026.Repo.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Adminuser");
+
+            migrationBuilder.DropTable(
+                name: "Movies");
+
             migrationBuilder.DropTable(
                 name: "Persons");
 

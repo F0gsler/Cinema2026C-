@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 8d6d7bd9-90a1-4112-8b0e-122f577485dd
+
+localResources:
+  specs:
+    - ../Cinema2026.API/obj/Debug/net10.0/EndpointInfo/Cinema2026.API.json

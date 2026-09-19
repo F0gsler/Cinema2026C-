@@ -20,5 +20,7 @@ namespace Cinema2026.Repo.Data
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<MovieHall> MovieHalls { get; set; }
+        public DbSet<Movies> Movies { get; set; }
+        public DbSet<AdminUser> Adminuser { get; set; }
     }
 }
