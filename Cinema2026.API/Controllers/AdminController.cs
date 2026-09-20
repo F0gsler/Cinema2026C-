@@ -16,7 +16,7 @@ namespace Cinema2026.API.Controllers
             _repo = repo;
         }
 
-        [HttpPost]
+        [HttpPost("CreateAdminUser")]
         public Task<AdminUser> CreateAdminUser(AdminUser adminuser)
         {
             var created = _repo.Add(adminuser);

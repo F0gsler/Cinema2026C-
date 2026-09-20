@@ -19,7 +19,6 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("defaultconnect")));
 
 builder.Services.AddScoped<IPersonRepositories, PersonRepositories>();
-builder.Services.AddScoped<IMovieHallRepositories, MovieHallRepositories>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositiories<>));
     
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();

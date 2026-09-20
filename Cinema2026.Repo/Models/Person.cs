@@ -39,6 +39,7 @@ namespace Cinema2026.Repo.Models
         [Key]
         public int MovieId { get; set; }
         public required string MovieName { get; set; }
+        public int MovieDuration { get; set; }
 
     }
 
