@@ -35,9 +35,10 @@ namespace Cinema2026.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesCatalog()
         {
-            var MoviesCatalog = _repo.GetAll();
-            return Ok(MoviesCatalog);
+            var moviesCatalog = await _repo.GetAll();
+            return Ok(moviesCatalog);
         }
+
 
 
         [HttpDelete("{MovieId}")]

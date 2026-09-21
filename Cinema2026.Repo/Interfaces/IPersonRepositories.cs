@@ -1,15 +1,16 @@
 ﻿using Cinema2026.Repo.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Cinema2026.Repo.Interfaces
 {
     public interface IPersonRepositories
     {
-        public List<Person> GetPeople();
-        public Task<List<Person>> GetPersonAsync();
-        public Task<Person> CreatePerson(Person person);
-        public Task<Person?> DeletePerson(int id);
+        List<Person> GetPeople();
+        Task<List<Person>> GetPersonAsync();
+        Task<Person?> GetPersonById(int id);
+        Task<Person> CreatePerson(Person person);
+        Task DeletePerson(int id);
+        Task UpdatePerson(Person person);
     }
 }

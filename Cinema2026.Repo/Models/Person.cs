@@ -55,4 +55,15 @@ namespace Cinema2026.Repo.Models
         // AdminLevel: 2 = adgang til at tilføje personer til film og oprette film
         public required int AdminLevel { get; set; }
     }
+
+    public class Order
+    {
+        [Key]
+        public int OrderId { get; set; }
+        public required List<Movies> MovieName { get; set; }
+        public required List<MovieHall> MovieHallId { get; set; }
+        public required List<HallSeats> HallSeatsId { get; set; }
+        public required List<HallSeats> SeatType { get; set; }
+    }
+
 }

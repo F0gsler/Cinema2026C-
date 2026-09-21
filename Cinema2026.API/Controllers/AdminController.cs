@@ -28,14 +28,11 @@ namespace Cinema2026.API.Controllers
         {
             var adminuser = await _repo.GetById(id);
 
-            if (adminuser == null)
-                return null!;
+            adminuser?.AdminLevel = level;
 
-            adminuser.AdminLevel = level;
+            await _repo.Update(adminuser!);
 
-            await _repo.Update(adminuser);
-
-            return adminuser;
+            return adminuser!;
         }
 
         [HttpDelete("{id:int}")]

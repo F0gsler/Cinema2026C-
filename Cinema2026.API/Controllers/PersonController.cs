@@ -1,11 +1,8 @@
 ﻿using Cinema2026.Repo.Data;
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Models;
-using Cinema2026.Repo.Repositiories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
+using Microsoft.Identity.Client.NativeInterop;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,6 +32,29 @@ namespace Cinema2026.API.Controllers
         {
             var created = await personRepo.CreatePerson(person);
             return created;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Person>> GetPersonById(int id)
+        {
+            var person = await personRepo.GetPersonById(id);
+            if (person == null) return NotFound();
+            return Ok(person);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<Person> Put(int id, [FromBody] Person person)
+        {
+            if (person == null || person.PersonId != id) return null!;
+            await personRepo.UpdatePerson(person);
+            return null!;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Person> Delete(int id)
+        {
+            await personRepo.DeletePerson(id);
+            return null!;
         }
     }
 }
