@@ -72,6 +72,9 @@ namespace Cinema2026.Repo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
+                    b.Property<int>("MovieDuration")
+                        .HasColumnType("int");
+
                     b.Property<int?>("MovieHallId")
                         .HasColumnType("int");
 

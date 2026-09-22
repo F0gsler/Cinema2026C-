@@ -22,7 +22,7 @@ namespace Cinema2026.API.Controllers
             _repo = repo;
         }
 
-        [HttpPost]
+        [HttpPost("CreateMovie")]
         public Task<Movies> CreatMovie([FromBody] Movies movies)
         {
             var created = _repo.Add(movies);
@@ -32,11 +32,11 @@ namespace Cinema2026.API.Controllers
         [HttpGet("{MovieId}")]
         public Task<Movies?> GetMovieByid(int MovieId) => _repo.GetById(MovieId);
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesCatalog()
+        [HttpGet("GetAllMovies")]
+        public async Task<IEnumerable<Movies>> GetMoviesCatalog()
         {
             var moviesCatalog = await _repo.GetAll();
-            return Ok(moviesCatalog);
+            return moviesCatalog;
         }
 
 
