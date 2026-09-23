@@ -9,16 +9,17 @@ namespace Cinema2026.Repo.Models
     {
         [Key]
         public int PersonId { get; set; } // Variable / Property <---- Primary
-        public required string name { get; set; }
+        public required string username { get; set; }
+        public required string password { get; set; }
+        public string? email { get; set; }
         public int age { get; set; } 
-        public required string role { get; set; }
     }
 
     public class MovieHall
     {
         [Key]
         public int MovieHallId { get; set; } // <---- Primary
-        public required List<Person> PersonId { get; set; }
+        public required List<Person>? PersonId { get; set; }
         public List<Movies>? MovieId { get; set; }
         public int SeatAmount { get; set; }
         public bool occupied { get; set; }
@@ -28,8 +29,8 @@ namespace Cinema2026.Repo.Models
     public class HallSeats
     {
         public int HallSeatsId { get; set; }
-        public required List<Person> PersonId { get; set; }
-        public required List<MovieHall> MovieHallId { get; set; }
+        public required List<Person>? PersonId { get; set; }
+        public required List<MovieHall>? MovieHallId { get; set; }
         public required int SeatAmount { get; set; }
         public required string SeatType { get; set; }
     }
@@ -60,10 +61,10 @@ namespace Cinema2026.Repo.Models
     {
         [Key]
         public int OrderId { get; set; }
-        public required List<Movies> MovieName { get; set; }
-        public required List<MovieHall> MovieHallId { get; set; }
-        public required List<HallSeats> HallSeatsId { get; set; }
-        public required List<HallSeats> SeatType { get; set; }
+        public required List<Movies>? MovieName { get; set; }
+        public required List<MovieHall>? MovieHallId { get; set; }
+        public required List<HallSeats>? HallSeatsId { get; set; }
+        public required List<HallSeats>? SeatType { get; set; }
     }
 
 }

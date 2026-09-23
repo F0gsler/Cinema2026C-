@@ -21,13 +21,13 @@ namespace Cinema2026.API.Controllers
             personRepo = r;
         }
 
-        [HttpGet]
-        public async Task<List<Person>> GetPersonAsync()
+        [HttpGet("GetAllPeople")]
+        public async Task<List<Person>> GetAllPeople()
         {
-            return await personRepo.GetPersonAsync();
+            return await personRepo.GetAllPeople();
         }
 
-        [HttpPost]
+        [HttpPost("CreatePerson")]
         public async Task<Person> Post([FromBody] Person person)
         {
             var created = await personRepo.CreatePerson(person);
@@ -56,5 +56,7 @@ namespace Cinema2026.API.Controllers
             await personRepo.DeletePerson(id);
             return null!;
         }
+
+
     }
 }

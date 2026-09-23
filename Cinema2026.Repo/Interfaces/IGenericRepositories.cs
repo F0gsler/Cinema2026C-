@@ -1,4 +1,6 @@
-﻿namespace Cinema2026.Repo.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace Cinema2026.Repo.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -7,5 +9,6 @@
         Task<T> Add(T entity);
         Task Update(T entity);
         Task Delete(int id);
+        Task<T?> Find(Expression<Func<T, bool>> predicate);
     }
 }

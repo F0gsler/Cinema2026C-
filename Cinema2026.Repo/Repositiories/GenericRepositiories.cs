@@ -2,6 +2,7 @@
 using Cinema2026.Repo.Interfaces;
 using Cinema2026.Repo.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 
@@ -45,6 +46,10 @@ namespace Cinema2026.Repo.Repositiories
             if (entity == null) return;
             dbSet.Remove(entity);
             await context.SaveChangesAsync();
+        }
+        public async Task<T?> Find(Expression<Func<T, bool>> predicate)
+        {
+            return await dbSet.FirstOrDefaultAsync(predicate);
         }
     }
 }

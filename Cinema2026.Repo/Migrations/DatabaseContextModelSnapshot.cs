@@ -103,11 +103,15 @@ namespace Cinema2026.Repo.Migrations
                     b.Property<int>("age")
                         .HasColumnType("int");
 
-                    b.Property<string>("name")
+                    b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("role")
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

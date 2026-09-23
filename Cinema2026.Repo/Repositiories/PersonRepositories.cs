@@ -25,7 +25,7 @@ namespace Cinema2026.Repo.Repositiories
             return persons;
         }
 
-        public async Task<List<Person>> GetPersonAsync()
+        public async Task<List<Person>> GetAllPeople()
         {
             return await dbSet.ToListAsync();
         }
@@ -56,5 +56,6 @@ namespace Cinema2026.Repo.Repositiories
             dbSet.Update(person);
             await _context.SaveChangesAsync();
         }
+
     }
 }

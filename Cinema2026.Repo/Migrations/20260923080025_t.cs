@@ -5,7 +5,7 @@
 namespace Cinema2026.Repo.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class t : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,9 +65,10 @@ namespace Cinema2026.Repo.Migrations
                 {
                     PersonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     age = table.Column<int>(type: "int", nullable: false),
-                    role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MovieHallId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
