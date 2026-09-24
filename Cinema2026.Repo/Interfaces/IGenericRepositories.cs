@@ -9,6 +9,5 @@ namespace Cinema2026.Repo.Interfaces
         Task<T> Add(T entity);
         Task Update(T entity);
         Task Delete(int id);
-        Task<T?> Find(Expression<Func<T, bool>> predicate);
     }
 }

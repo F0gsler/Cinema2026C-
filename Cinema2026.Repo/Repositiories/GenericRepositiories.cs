@@ -47,9 +47,9 @@ namespace Cinema2026.Repo.Repositiories
             dbSet.Remove(entity);
             await context.SaveChangesAsync();
         }
-        public async Task<T?> Find(Expression<Func<T, bool>> predicate)
+        public async Task GetByUsername()
         {
-            return await dbSet.FirstOrDefaultAsync(predicate);
+            return dbSet.FirstOrDefault(p)
         }
     }
 }
