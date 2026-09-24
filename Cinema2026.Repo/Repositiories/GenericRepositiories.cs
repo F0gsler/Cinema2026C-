@@ -47,9 +47,5 @@ namespace Cinema2026.Repo.Repositiories
             dbSet.Remove(entity);
             await context.SaveChangesAsync();
         }
-        public async Task GetByUsername()
-        {
-            return dbSet.FirstOrDefault(p)
-        }
     }
 }

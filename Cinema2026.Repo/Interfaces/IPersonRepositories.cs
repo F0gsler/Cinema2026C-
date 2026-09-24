@@ -12,5 +12,7 @@ namespace Cinema2026.Repo.Interfaces
         Task<Person> CreatePerson(Person person);
         Task DeletePerson(int id);
         Task UpdatePerson(Person person);
+        Task<Person?> GetByUsername(string username);
+
     }
 }

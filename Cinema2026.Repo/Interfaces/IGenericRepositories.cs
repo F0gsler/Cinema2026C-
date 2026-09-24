@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Cinema2026.Repo.Models;
+using System.Linq.Expressions;
 
 namespace Cinema2026.Repo.Interfaces
 {

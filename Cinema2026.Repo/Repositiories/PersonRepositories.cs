@@ -56,6 +56,10 @@ namespace Cinema2026.Repo.Repositiories
             dbSet.Update(person);
             await _context.SaveChangesAsync();
         }
+        public async Task<Person?> GetByUsername(string username)
+        {
+            return await dbSet.FirstOrDefaultAsync(p => p.username == username);
+        }
 
     }
 }
