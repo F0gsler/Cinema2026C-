@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Cinema2026.API/Cinema2026.API.csproj" />
   <Project Path="Cinema2026.Repo/Cinema2026.Repo.csproj" />
+  <Project Path="Cinema2026.Tests/Cinema2026.Tests.csproj" />
 </Solution>

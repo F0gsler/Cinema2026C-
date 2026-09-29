@@ -104,7 +104,6 @@ namespace Cinema2026.Repo.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("password")
